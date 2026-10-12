@@ -1,6 +1,8 @@
 # Weighted Guided Image Filtering (WGIF) in Python
 
-An interactive desktop app that implements **Weighted Guided Image Filtering** to enhance image detail while keeping edges sharp and avoiding halo artifacts. Load an image, adjust three sliders and compare the original, the base layer and the enhanced result side by side.
+An interactive desktop app that implements **Weighted Guided Image Filtering** to enhance image detail while keeping edges sharp. Load an image, adjust three sliders, and compare the original, the base layer and the enhanced result side by side.
+
+![Screenshot of the application](images/screenshot_gui.png)
 
 ## How it works
 
@@ -11,7 +13,7 @@ The algorithm follows the approach from *Weighted Guided Image Filtering* (Z. Li
 3. **Detail layer.** `detail = input - base`
 4. **Detail enhancement.** `enhanced = input + eta * detail * theta`, where `eta` is the normalized weight map (so detail is boosted mostly near edges and textures) and `theta` is the amplification factor controlled by a slider.
 
-All local statistics (means, variances, covariances) are computed with vectorized OpenCV and NumPy operations, with no per-pixel Python loops.
+All local statistics (means, variances, covariances) are computed with vectorized OpenCV and NumPy operations, without per-pixel Python loops.
 
 ## Features
 
@@ -21,26 +23,31 @@ All local statistics (means, variances, covariances) are computed with vectorize
   - **Theta (Detail):** detail amplification, 1 to 40
   - **Radius (r):** window radius of the guided filter, 3 to 40
   - **Gamma (Smooth):** Gaussian smoothing of the weight map, 0.1 to 3.0
-- Responsive layout that resizes images to fit the window
+- Layout that resizes images to fit the window
 
 > Note: the interface labels are in Romanian (*Incarca o imagine* = Load image, *Filtreaza* = Filter).
 
+## Example results
+
+| Original | Enhanced |
+|---|---|
+| ![original](images/original.png) | ![enhanced](images/enhanced.png) |
+
 ## Installation
 
-Requires Python 3.8 or newer. Tkinter is included with most Python installations.
+Requires Python 3. Tkinter is included with most Python installations.
 
 ```bash
-git clone https://github.com/<your-username>/<repository-name>.git
-cd <repository-name>
+git clone https://github.com/albertizabella12/weighted-guided-image-filtering.git
+cd weighted-guided-image-filtering
 pip install -r requirements.txt
 ```
 
 ## Usage
 
 ```bash
-python main.py
+python weighted-guided-image-filtering.py
 ```
-<!-- TODO: replace main.py with the real name of your script -->
 
 1. Click **Incarca o imagine** and choose an image.
 2. Set the sliders. Good starting values are Theta = 4, Radius = 15 and Gamma = 1.0.
@@ -49,14 +56,6 @@ python main.py
 ## Tech stack
 
 Python, OpenCV, NumPy, Pillow, Tkinter
-
-## Building it with and without AI
-
-<!-- TODO: fill this in after you reimplement the project with Claude. Suggested points:
-- How long each version took
-- What the AI got right and where it needed correction
-- Differences in code structure and readability
-- What you learned from each approach -->
 
 ## Reference
 
